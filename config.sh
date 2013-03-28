@@ -97,22 +97,27 @@ case "$1" in
 	;;
 
 *)
-	echo Usage: $0 \(device name\)
-	echo
-	echo Valid devices to configure are:
-	echo - galaxy-s2
-	echo - galaxy-nexus
-	echo - nexus-s
-	echo - nexus-s-4g
-	echo - otoro
-	echo - unagi
-	echo - inari
-	echo - keon
-	echo - leo
-	echo - pandaboard
-	echo - emulator
-	echo - emulator-x86
-	exit -1
+	if [ -n "$DEVICE" ] && [ "$DEVICE" = "$1" ]; then
+		echo DEVICE=$1 >> .tmp-config &&
+		repo_sync $1
+	else
+		echo Usage: $0 \(device name\)
+		echo
+		echo Valid devices to configure are:
+		echo - galaxy-s2
+		echo - galaxy-nexus
+		echo - nexus-s
+		echo - nexus-s-4g
+		echo - otoro
+		echo - unagi
+		echo - inari
+		echo - keon
+		echo - leo
+		echo - pandaboard
+		echo - emulator
+		echo - emulator-x86
+		exit -1
+	fi
 	;;
 esac
 
