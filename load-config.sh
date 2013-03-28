@@ -10,6 +10,12 @@ if [ $? -ne 0 ]; then
 	exit -1
 fi
 
+for config in device/*/$DEVICE/config; do
+	if [ -f $config ] ; then
+		. $config
+	fi
+done
+
 if [ -f "$B2G_DIR/.userconfig" ]; then
 	. "$B2G_DIR/.userconfig"
 fi
